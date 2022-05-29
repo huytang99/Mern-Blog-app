@@ -1,0 +1,8 @@
+Mới vào fetch tất cả posts truyền qua props tói post và singlePost.
+Khi mình bấm vào title(thẻ link) 1 post thì nó sẽ thêm id vào url và mình dùng url này bên post đơn(singlePost) để fetch post tương ứng. Tạo useEffect ở singlePost rằng là mỗi khi url thay đổi(dc truyền id khác) thì đi fetch th post mới để render trang. Cơ chế này cũng dc dùng cho fetch posts của 1 user ở homepage.
+Khi mình bấm vào tên tác giả ở singlePost, nó sẽ lấy tên tác giả này làm query string(?user={user.name}) pass vào url direct về trang chủ, tại Home mình sẽ dùng query này để fetch các posts tương ứng. Cũng có useEffect là mỗi khi query string thay đổi thì nó sẽ fetch và render các post khác tương ứng với user mới
+
+Khi mình register thành công thì mình dùng lệnh dưới để redirect qua trang logIn
+res.data && window.location.replace("/login")
+
+When we update a single post, we set a state to know whether we're in update mode or not, we have a button to end the mode and also submit the new date(save in state) to update the database, and use the state as to update the page after update section completed. At first i have the idea that whenever a post change(update db) we use useEffect to fetch new SinglePost data and then rerender the pagebut its not right. Vậy nên có thể kết luận là mình chỉ nên lụm data có sẵn từ db, bất kể sự thay đổi nào ở client thì mình cũng sẽ ghi nhận nó ở db nhưng cập nhật thì mình dùng state ngay trên client luôn chứ k phải mình sửa db = thông tin mới rồi fetch lại = useEffect vì thực ra mình k nắm dc khi nào thì db thay đổi
